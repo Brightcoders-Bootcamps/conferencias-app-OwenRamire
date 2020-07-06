@@ -8,15 +8,41 @@ import {
   TextInput,
   Alert,
 } from 'react-native';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
 export default class NewEvent extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isVisible: false,
+      choseData: '',
+    };
+  }
+
+  handlePicker = (datetime) => {
+    this.setState({
+      isVisible: false,
+      choseData: datetime,
+    });
+    console.log(datetime);
+  };
+
+  hidePicker = () => {
+    this.setState({
+      isVisible: false,
+    });
+  };
+
+  showPicker = () => {
+    this.setState({
+      isVisible: true,
+    });
+  };
+
   render() {
     return (
       <View style={styles.mainContainer}>
-        <ScrollView
-          style={{
-            height: '100%',
-          }}>
+        <ScrollView>
           <View style={styles.cardEvent}>
             <Text style={{fontSize: 30, marginTop: 20, marginLeft: 15}}>
               New conference
@@ -30,11 +56,14 @@ export default class NewEvent extends React.Component {
               <TouchableOpacity
                 style={styles.btnDayHour}
                 onPress={this.showPicker}>
-                <Text style={{color: 'white', fontSize: 20}}>Select the day</Text>
+                <Text style={{color: 'white', fontSize: 20}}>Select the day and hour</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.btnDayHour}>
-                <Text style={{color: 'white', fontSize: 20}}>Select the hour</Text>
-              </TouchableOpacity>
+              <DateTimePickerModal
+                isVisible={this.state.isVisible}
+                mode="datetime"
+                onConfirm={this.handlePicker}
+                onCancel={this.hidePicker}
+              />
               <TouchableOpacity
                 style={styles.btnAddConf}
                 onPress={() =>
@@ -61,8 +90,9 @@ const styles = StyleSheet.create({
   },
   cardEvent: {
     width: '85%',
-    height: 500,
-    marginTop: 50,
+    height: 'auto',
+    display: 'flex',
+    justifyContent: 'center',
     marginRight: 'auto',
     marginLeft: 'auto',
     backgroundColor: '#ffff',
@@ -99,7 +129,8 @@ const styles = StyleSheet.create({
   btnAddConf: {
     width: 180,
     height: 40,
-    marginTop: 25,
+    marginTop: 30,
+    marginBottom: 30,
     backgroundColor: 'hsl(141, 71%, 48%)',
     display: 'flex',
     justifyContent: 'center',
