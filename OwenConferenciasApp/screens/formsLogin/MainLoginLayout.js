@@ -8,7 +8,7 @@ import App from '../../App';
 
 function MainForm({navigation}) {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' , backgroundColor:'#F0F1F6'}}>
+    <View style={styles.container}>
       <View style={styles.mainContainer}>
         <Text style={styles.title}> Welcome to BC👨‍💻 Agenda 📝</Text>
         <View>
@@ -87,6 +87,12 @@ export default function goSignIn() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F0F1F6',
+  },
   mainContainer: {
     width: '100%',
     flex: 1,
