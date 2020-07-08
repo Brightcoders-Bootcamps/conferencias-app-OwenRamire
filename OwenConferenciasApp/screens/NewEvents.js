@@ -13,14 +13,9 @@ export default class NewEvent extends React.Component {
   render() {
     return (
       <View style={styles.mainContainer}>
-        <ScrollView
-          style={{
-            height: '100%',
-          }}>
+        <ScrollView style={styles.scrollView}>
           <View style={styles.cardEvent}>
-            <Text style={{fontSize: 30, marginTop: 20, marginLeft: 15}}>
-              New conference
-            </Text>
+            <Text style={styles.txtTitle}>New conference</Text>
             <View style={styles.formNewEvent}>
               <TextInput
                 style={styles.inputEvents}
@@ -30,17 +25,17 @@ export default class NewEvent extends React.Component {
               <TouchableOpacity
                 style={styles.btnDayHour}
                 onPress={this.showPicker}>
-                <Text style={{color: 'white', fontSize: 20}}>Select the day</Text>
+                <Text style={styles.txtButtons}>Select the day</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.btnDayHour}>
-                <Text style={{color: 'white', fontSize: 20}}>Select the hour</Text>
+                <Text style={styles.txtButtons}>Select the hour</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.btnAddConf}
                 onPress={() =>
                   Alert.alert('Are you sure ta add this conference')
                 }>
-                <Text style={{fontSize: 20, color: 'white'}}>Add conference</Text>
+                <Text style={styles.txtButtons}>Add conference</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -58,6 +53,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  scrollView: {
+    height: '100%',
+  },
+  txtTitle: {
+    fontSize: 30,
+    marginTop: 20,
+    marginLeft: 15,
   },
   cardEvent: {
     width: '85%',
@@ -105,5 +108,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 25,
+  },
+  txtButtons: {
+    color: 'white',
+    fontSize: 20,
   },
 });

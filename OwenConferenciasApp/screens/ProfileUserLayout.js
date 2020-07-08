@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image, TouchableOpacity, Text, StyleSheet, Alert} from 'react-native';
+import {View, Image, TouchableOpacity, Text, StyleSheet} from 'react-native';
 
 export default function ProfileUserLayout() {
   return (
@@ -15,9 +15,9 @@ export default function ProfileUserLayout() {
             <Text style={styles.user}>Email: owenomar@example.com</Text>
           </View>
         </View>
-        <View style={styles.btnEditProfile}>
-          <TouchableOpacity>
-            <Text style={{color: 'white', fontWeight: 'bold'}}>Edit Profile</Text>
+        <View style={styles.containerBtnEditProfile}>
+          <TouchableOpacity style={styles.btnEditProfile}>
+            <Text style={styles.txtEditProf}>Edit Profile</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 5,
   },
-  btnEditProfile: {
+  containerBtnEditProfile: {
     width: '70%',
     height: 50,
     marginTop: 20,
@@ -70,5 +70,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 25,
     backgroundColor: 'hsl(204, 86%, 53%)',
+  },
+  btnEditProfile: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  txtEditProf: {
+    width: 80,
+    color: 'white',
+    fontWeight: 'bold',
   },
 });
