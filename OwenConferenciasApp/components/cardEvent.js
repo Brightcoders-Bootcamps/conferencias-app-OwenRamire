@@ -1,53 +1,47 @@
 import React from 'react';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
-import UpcomingEvent from '../screens/UpcomingEvents';
+import {View, Text, StyleSheet} from 'react-native';
 
-export default class CardEvent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      events: [
-        {
-          date: '2020-07-06',
-          nameEvent: 'The Spoils of war',
-          hour: '09:00 - 10:00',
-        },
-        {
-          date: '2020-07-07',
-          nameEvent: 'The broken man',
-          hour: '09:00 - 10:00',
-        },
-        {
-          date: '2020-07-08',
-          nameEvent: 'Back to winterfell',
-          hour: '09:00 - 10:00',
-        },
-      ],
-    };
-  }
-  render() {
-    return (
-      <View style={styles.container}>
-        <FlatList
-          data={this.state.events}
-          renderItem={({item}) => <UpcomingEvent data={item} />}
-        />
-      </View>
-    );
-  }
+export default function cardEvent(props) {
+  return (
+    <View style={styles.cardContainer}>
+      <Text style={[styles.txtInfo, styles.txtDate]}>{props.data.date}</Text>
+      <Text style={[styles.txtInfo, styles.txtEvent]}>{props.data.nameEvent}</Text>
+      <Text style={[styles.txtInfo, styles.txtHour]}>{props.data.hour}</Text>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    // justifyContent: 'center',
-    alignItems: 'center',
-  },
-  card: {
-    width: '95%',
+  cardContainer: {
+    width: '90%',
     height: 100,
-    backgroundColor: '#FD6175',
+    marginTop: 15,
+    marginBottom: 10,
+    //padding: 15,
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    backgroundColor: '#ffffff',
+    borderRadius: 10,
+    // flex: 3,
+    // justifyContent: 'center',
+    // borderWidth: 2,
+    // borderStyle: 'solid',
+    // borderColor: 'green',
+  },
+  txtDate: {
+    fontSize: 25,
+    textAlign: 'left',
+    paddingLeft: 10,
+  },
+  txtEvent: {
+    fontSize: 20,
+    textAlign: 'center',
+  },
+  txtHour: {
+    fontSize: 15,
+    textAlign: 'right',
+    paddingRight: 10,
   },
 });
+
+//style={{display: 'flex', justifyContent: 'center', alignItems: 'center', borderWidth: 2, borderStyle: 'solid', borderColor: 'green'}}
