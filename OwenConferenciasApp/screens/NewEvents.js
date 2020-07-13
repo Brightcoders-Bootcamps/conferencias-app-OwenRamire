@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  SafeAreaView,
   View,
   Text,
   TouchableOpacity,
@@ -8,93 +9,89 @@ import {
   TextInput,
   Alert,
 } from 'react-native';
+import {Colors} from '../themes/Themes';
 
 export default class NewEvent extends React.Component {
   render() {
     return (
-      <View style={styles.mainContainer}>
-        <ScrollView style={styles.scrollView}>
-          <View style={styles.cardEvent}>
-            <Text style={styles.txtTitle}>New conference</Text>
-            <View style={styles.formNewEvent}>
-              <TextInput
-                style={styles.inputEvents}
-                placeholder="Name of the conference:"
-              />
-              <TextInput style={styles.inputEvents} placeholder="Topic:" />
-              <TouchableOpacity
-                style={styles.btnDayHour}
-                onPress={this.showPicker}>
+      <SafeAreaView style={styles.mainContainer}>
+        <View style={styles.cardEvent}>
+          <Text style={styles.txtTitle}>New conference</Text>
+          <View style={styles.formNewEvent}>
+            <TextInput
+              style={styles.inputEvents}
+              placeholder="Name of the conference:"
+            />
+            <TextInput style={styles.inputEvents} placeholder="Topic:" />
+            <View style={styles.containerBtnsDayHour}>
+              <TouchableOpacity style={styles.btnsDayHour}>
                 <Text style={styles.txtButtons}>Select the day</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.btnDayHour}>
+              <TouchableOpacity style={styles.btnsDayHour}>
                 <Text style={styles.txtButtons}>Select the hour</Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.btnAddConf}
-                onPress={() =>
-                  Alert.alert('Are you sure ta add this conference')
-                }>
-                <Text style={styles.txtButtons}>Add conference</Text>
-              </TouchableOpacity>
             </View>
+            <TouchableOpacity
+              style={styles.btnAddConf}
+              onPress={() =>
+                Alert.alert('Are you sure ta add this conference')
+              }>
+              <Text style={styles.txtButtons}>Add conference</Text>
+            </TouchableOpacity>
           </View>
-        </ScrollView>
-      </View>
+        </View>
+      </SafeAreaView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   mainContainer: {
-    height: '100%',
-    backgroundColor: '#F0F1F6',
+    backgroundColor: Colors.lightGray,
     flex: 1,
-    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  scrollView: {
-    height: '100%',
-  },
   txtTitle: {
     fontSize: 30,
-    marginTop: 20,
-    marginLeft: 15,
+    textAlign: 'center',
+    marginTop: 15,
   },
   cardEvent: {
-    width: '85%',
-    height: 500,
-    marginTop: 50,
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    backgroundColor: '#ffff',
+    width: 330,
+    flex: 0.85,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.white,
     borderRadius: 20,
   },
   formNewEvent: {
-    marginTop: 30,
-    marginLeft: 15,
-    marginRight: 15,
+    width: 260,
+    marginVertical: 20,
   },
   inputEvents: {
     width: '90%',
     height: 50,
     fontSize: 15,
-    marginTop: 10,
-    marginBottom: 15,
+    marginVertical: 10,
     marginLeft: 10,
     borderBottomWidth: 2,
-    borderBottomColor: '#F0F1F6',
+    borderBottomColor: Colors.lightGray,
     borderStyle: 'solid',
   },
-  btnDayHour: {
-    width: '80%',
-    height: 40,
+  containerBtnsDayHour: {
+    height: 150,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 15,
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    backgroundColor: 'hsl(204, 86%, 53%)',
-    borderRadius: 20,
+  },
+  btnsDayHour: {
+    marginVertical: 10,
+    width: 200,
+    height: 40,
+    borderRadius: 50,
+    backgroundColor: Colors.blueBtnsProfile,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -102,15 +99,15 @@ const styles = StyleSheet.create({
   btnAddConf: {
     width: 180,
     height: 40,
-    marginTop: 25,
-    backgroundColor: 'hsl(141, 71%, 48%)',
+    marginVertical: 20,
+    backgroundColor: Colors.greenSuccess,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 25,
   },
   txtButtons: {
-    color: 'white',
+    color: Colors.white,
     fontSize: 20,
   },
 });
