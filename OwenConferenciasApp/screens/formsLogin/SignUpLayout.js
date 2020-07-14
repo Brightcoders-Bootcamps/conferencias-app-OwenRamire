@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import {Colors} from '../../themes/Themes';
 
-export default function SignUpLayout() {
+export default function SignUpLayout({navigation}) {
   return (
     <SafeAreaView>
       <ScrollView style={styles.mainContainer}>
@@ -43,7 +43,7 @@ export default function SignUpLayout() {
               <TouchableOpacity
                 style={{width: '85%'}}
                 onPress={() => {
-                  Alert.alert('Hi');
+                  navigation.navigate('MainMenu');
                 }}>
                 <Text style={styles.textBtnSignUp}>Create account</Text>
               </TouchableOpacity>

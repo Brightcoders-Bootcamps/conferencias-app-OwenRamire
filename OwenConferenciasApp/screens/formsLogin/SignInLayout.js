@@ -7,11 +7,10 @@ import {
   Image,
   Text,
   StyleSheet,
-  Alert,
 } from 'react-native';
 import {Colors} from '../../themes/Themes';
 
-export default function SignInLayout() {
+export default function SignInLayout({navigation}) {
   return (
     <SafeAreaView style={styles.mainContainer}>
       <View style={styles.containerLogin}>
@@ -27,7 +26,7 @@ export default function SignInLayout() {
         <TextInput style={styles.inputUser} placeholder="Password: " />
         <View style={styles.containerBtn}>
           <View style={styles.btnSignIn}>
-            <TouchableOpacity style={{width:"85%"}} onPress={() => Alert.alert('Hi')}>
+            <TouchableOpacity style={{width:"85%"}} onPress={() => navigation.navigate('MainMenu')}>
               <Text style={styles.textBtnSignIn}>Sign In</Text>
             </TouchableOpacity>
           </View>

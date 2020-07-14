@@ -1,13 +1,8 @@
 import * as React from 'react';
 import {SafeAreaView, View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import SignIn from './SignInLayout';
-import SignUp from './SignUpLayout';
-import App from '../../App';
 import {Colors} from '../../themes/Themes';
 
-function MainForm({navigation}) {
+export default function MainForm({navigation}) {
   return (
     <SafeAreaView style={styles.mainContainer}>
       <View style={styles.container}>
@@ -32,58 +27,6 @@ function MainForm({navigation}) {
         </View>
       </View>
     </SafeAreaView>
-  );
-}
-
-const Stack = createStackNavigator();
-
-export default function goSignIn() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="MainForm">
-        <Stack.Screen
-          name="MainForm"
-          component={MainForm}
-          options={{
-            title: '',
-            headerStyle: {
-              height: 0,
-              backgroundColor: Colors.lightGray,
-            },
-          }}
-        />
-        <Stack.Screen
-          name="SignIn"
-          options={{
-            title: 'Back',
-            headerStyle: {
-              backgroundColor: Colors.lightGray,
-            },
-          }}
-          component={SignIn}
-        />
-        <Stack.Screen
-          name="SignUp"
-          component={SignUp}
-          options={{
-            title: 'Back',
-            headerStyle: {
-              backgroundColor: Colors.lightGray,
-            },
-          }}
-        />
-        <Stack.Screen
-          name="MainMenu"
-          component={App}
-          options={{
-            title: 'Back',
-            headerStyle: {
-              backgroundColor: Colors.lightGray,
-            },
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
   );
 }
 
