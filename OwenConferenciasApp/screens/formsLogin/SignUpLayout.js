@@ -2,6 +2,7 @@ import React from 'react';
 import {
   ScrollView,
   View,
+  SafeAreaView,
   Image,
   Text,
   TextInput,
@@ -9,11 +10,12 @@ import {
   StyleSheet,
   Alert,
 } from 'react-native';
+import {Colors} from '../../themes/Themes';
 
-export default function SignUpLayout() {
+export default function SignUpLayout({navigation}) {
   return (
-    <ScrollView style={{height: '100%', backgroundColor: '#F0F1F6'}}>
-      <View>
+    <SafeAreaView>
+      <ScrollView style={styles.mainContainer}>
         <View style={styles.containerLogin}>
           <View>
             <Image
@@ -41,45 +43,46 @@ export default function SignUpLayout() {
               <TouchableOpacity
                 style={{width: '85%'}}
                 onPress={() => {
-                  Alert.alert('Hi');
+                  navigation.navigate('MainMenu');
                 }}>
-                <Text
-                  style={{color: '#ffff', textAlign: 'center', fontSize: 20}}>
-                  Create account
-                </Text>
+                <Text style={styles.textBtnSignUp}>Create account</Text>
               </TouchableOpacity>
             </View>
           </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  containerLogin: {
-    height: 700,
+  mainContainer: {
     display: 'flex',
+    backgroundColor: Colors.lightGray,
+  },
+  containerLogin: {
+    marginVertical: 20,
+    flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },
   title: {
     fontSize: 40,
-    marginTop: 20,
-    marginBottom: 20,
+    marginVertical: 20,
   },
   imgLogo: {
     width: 310,
     height: 200,
+    marginTop: 10,
   },
   inputUser: {
     width: 280,
     height: 50,
-    marginBottom: 10,
+    marginBottom: 12,
     paddingLeft: 20,
     fontWeight: 'bold',
-    backgroundColor: ' hsl(0, 0%, 90%)',
+    backgroundColor: Colors.backgroundGray,
     borderRadius: 25,
   },
   containerBtnImgUser: {
@@ -90,6 +93,7 @@ const styles = StyleSheet.create({
   },
   containerBtn: {
     width: '70%',
+    marginBottom: 10,
     flex: 0.2,
     flexDirection: 'column',
     justifyContent: 'center',
@@ -102,7 +106,12 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2BD1D1',
+    backgroundColor: Colors.lightBlue,
     borderRadius: 25,
+  },
+  textBtnSignUp: {
+    color: Colors.white,
+    textAlign: 'center',
+    fontSize: 20,
   },
 });

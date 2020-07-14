@@ -1,15 +1,11 @@
 import * as React from 'react';
-import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import SignIn from './SignInLayout';
-import SignUp from './SignUpLayout';
-import App from '../../App';
+import {SafeAreaView, View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
+import {Colors} from '../../themes/Themes';
 
-function MainForm({navigation}) {
+export default function MainForm({navigation}) {
   return (
-    <View style={styles.container}>
-      <View style={styles.mainContainer}>
+    <SafeAreaView style={styles.mainContainer}>
+      <View style={styles.container}>
         <Text style={styles.title}> Welcome to BC👨‍💻 Agenda 📝</Text>
         <View>
           <Image
@@ -30,59 +26,7 @@ function MainForm({navigation}) {
           </View>
         </View>
       </View>
-    </View>
-  );
-}
-
-const Stack = createStackNavigator();
-
-export default function goSignIn() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="MainForm">
-        <Stack.Screen
-          name="MainForm"
-          component={MainForm}
-          options={{
-            title: '',
-            headerStyle: {
-              height: 0,
-              backgroundColor: '#F0F1F6',
-            },
-          }}
-        />
-        <Stack.Screen
-          name="SignIn"
-          options={{
-            title: 'Back',
-            headerStyle: {
-              backgroundColor: '#F0F1F6',
-            },
-          }}
-          component={SignIn}
-        />
-        <Stack.Screen
-          name="SignUp"
-          component={SignUp}
-          options={{
-            title: 'Back',
-            headerStyle: {
-              backgroundColor: '#F0F1F6',
-            },
-          }}
-        />
-        <Stack.Screen
-          name="MainMenu"
-          component={App}
-          options={{
-            title: 'Back',
-            headerStyle: {
-              backgroundColor: '#F0F1F6',
-            },
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    </SafeAreaView>
   );
 }
 
@@ -94,15 +38,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#F0F1F6',
   },
   mainContainer: {
-    width: '100%',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.lightGray,
+  },
+  container: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20,
   },
   title: {
-    width: '70%',
     fontSize: 30,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -113,9 +60,7 @@ const styles = StyleSheet.create({
     height: 200,
   },
   containerBtns: {
-    width: '70%',
-    height: 130,
-    marginTop: 30,
+    marginTop: 50,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -124,20 +69,21 @@ const styles = StyleSheet.create({
   btnsLogin: {
     width: 200,
     height: 50,
-    marginBottom: 10,
+    marginVertical: 8,
+    marginHorizontal: 10,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#4B406B',
+    backgroundColor: Colors.purple,
     borderRadius: 25,
   },
   btnSignUp: {
-    backgroundColor: '#2BD1D1',
+    backgroundColor: Colors.lightBlue,
   },
   textBtns: {
     width: 150,
     textAlign: 'center',
-    color: '#ffff',
+    color: Colors.white,
     fontSize: 15,
     fontWeight: 'bold',
   },

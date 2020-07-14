@@ -1,15 +1,21 @@
 import React from 'react';
-import {View, Image, TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  Image,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+} from 'react-native';
+import {Colors} from '../themes/Themes';
+import {URLs} from '../themes/urls';
 
 export default function ProfileUserLayout() {
   return (
-    <View style={styles.mainContainer}>
+    <SafeAreaView style={styles.mainContainer}>
       <View style={styles.auxContainer}>
         <View style={styles.cardUser}>
-          <Image
-            source={{uri: 'https://reactnative.dev/img/logo-og.png'}}
-            style={styles.userImg}
-          />
+          <Image source={{uri: URLs.profileImg}} style={styles.userImg} />
           <View style={styles.userInfo}>
             <Text style={styles.user}>User: owen ramirez</Text>
             <Text style={styles.user}>Email: owenomar@example.com</Text>
@@ -21,29 +27,27 @@ export default function ProfileUserLayout() {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   mainContainer: {
-    backgroundColor: '#F0F1F6',
+    backgroundColor: Colors.backgroundGray,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   auxContainer: {
-    width: '85%',
-    height: '80%',
-    backgroundColor: '#ffffff',
+    backgroundColor: Colors.white,
     borderRadius: 25,
-    display: 'flex',
+    flex: 0.8,
+    paddingHorizontal: 25,
     justifyContent: 'center',
     alignItems: 'center',
   },
   cardUser: {
-    width: '100%',
-    display: 'flex',
+    flex: 0.5,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -62,14 +66,22 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   containerBtnEditProfile: {
-    width: '70%',
-    height: 50,
-    marginTop: 20,
-    display: 'flex',
+    flex: 0.1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignSelf: 'stretch',
+  },
+  btnEditProfile: {
+    backgroundColor: Colors.blueBtnsProfile,
+    flex: 1,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    paddingHorizontal: 50,
     borderRadius: 25,
-    backgroundColor: 'hsl(204, 86%, 53%)',
+  },
+  txtEditProf: {
+    width: 80,
+    color: Colors.white,
+    fontWeight: 'bold',
   },
   btnEditProfile: {
     width: '100%',
