@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  SafeAreaView,
   View,
   Text,
   TouchableOpacity,
@@ -9,22 +10,32 @@ import {
   Alert,
 } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import {Colors} from '../themes/Themes';
 
 export default class NewEvent extends React.Component {
   constructor() {
     super();
     this.state = {
       isVisible: false,
-      choseData: '',
+      choseDateStart: '',
+      choseDateEnd: '',
     };
   }
 
-  handlePicker = (datetime) => {
+  handlePickerStart = (datetime) => {
     this.setState({
       isVisible: false,
-      choseData: datetime,
+      choseDateStart: datetime,
     });
-    console.log(datetime);
+    console.log('Start date:' + datetime);
+  };
+
+  handlePickerEnd = (datetime) => {
+    this.setState({
+      isVisible: false,
+      choseDateEnd: datetime,
+    });
+    console.log('End date: ' + datetime);
   };
 
   hidePicker = () => {
@@ -41,87 +52,103 @@ export default class NewEvent extends React.Component {
 
   render() {
     return (
-      <View style={styles.mainContainer}>
-        <ScrollView>
-          <View style={styles.cardEvent}>
-            <Text style={{fontSize: 30, marginTop: 20, marginLeft: 15}}>
-              New conference
-            </Text>
-            <View style={styles.formNewEvent}>
-              <TextInput
-                style={styles.inputEvents}
-                placeholder="Name of the conference:"
-              />
-              <TextInput style={styles.inputEvents} placeholder="Topic:" />
+      <SafeAreaView style={styles.mainContainer}>
+        <View style={styles.cardEvent}>
+          <Text style={styles.txtTitle}>New conference</Text>
+          <View style={styles.formNewEvent}>
+            <TextInput
+              style={styles.inputEvents}
+              placeholder="Name of the conference:"
+            />
+            <TextInput style={styles.inputEvents} placeholder="Topic:" />
+            <View style={styles.containerBtnsDayHour}>
+              <Text>Start {this.state.choseDateStart}</Text>
               <TouchableOpacity
-                style={styles.btnDayHour}
+                style={styles.btnsDayHour}
                 onPress={this.showPicker}>
-                <Text style={{color: 'white', fontSize: 20}}>Select the day and hour</Text>
+                <Text style={styles.txtButtons}>Select the start</Text>
               </TouchableOpacity>
+              {/* This datetime picker is to select the start of the event */}
               <DateTimePickerModal
                 isVisible={this.state.isVisible}
                 mode="datetime"
-                onConfirm={this.handlePicker}
+                onConfirm={this.handlePickerStart}
                 onCancel={this.hidePicker}
               />
               <TouchableOpacity
-                style={styles.btnAddConf}
-                onPress={() =>
-                  Alert.alert('Are you sure ta add this conference')
-                }>
-                <Text style={{fontSize: 20, color: 'white'}}>Add conference</Text>
+                style={styles.btnsDayHour}
+                onPress={this.showPicker}>
+                <Text style={styles.txtButtons}>Select the end</Text>
               </TouchableOpacity>
+              {/* This datetime picker is to select the start of the event */}
+              <DateTimePickerModal
+                isVisible={this.state.isVisible}
+                mode="datetime"
+                onConfirm={this.handlePickerEnd}
+                onCancel={this.hidePicker}
+              />
             </View>
+            <TouchableOpacity
+              style={styles.btnAddConf}
+              onPress={() =>
+                Alert.alert('Are you sure ta add this conference')
+              }>
+              <Text style={styles.txtButtons}>Add conference</Text>
+            </TouchableOpacity>
           </View>
-        </ScrollView>
-      </View>
+        </View>
+      </SafeAreaView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   mainContainer: {
-    height: '100%',
-    backgroundColor: '#F0F1F6',
+    backgroundColor: Colors.lightGray,
     flex: 1,
-    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  txtTitle: {
+    fontSize: 30,
+    textAlign: 'center',
+    marginTop: 15,
+  },
   cardEvent: {
-    width: '85%',
-    height: 'auto',
-    display: 'flex',
+    width: 330,
+    flex: 0.85,
     justifyContent: 'center',
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    backgroundColor: '#ffff',
+    alignItems: 'center',
+    backgroundColor: Colors.white,
     borderRadius: 20,
   },
   formNewEvent: {
-    marginTop: 30,
-    marginLeft: 15,
-    marginRight: 15,
+    width: 260,
+    marginVertical: 20,
   },
   inputEvents: {
     width: '90%',
     height: 50,
     fontSize: 15,
-    marginTop: 10,
-    marginBottom: 15,
+    marginVertical: 10,
     marginLeft: 10,
     borderBottomWidth: 2,
-    borderBottomColor: '#F0F1F6',
+    borderBottomColor: Colors.lightGray,
     borderStyle: 'solid',
   },
-  btnDayHour: {
-    width: '80%',
-    height: 40,
+  containerBtnsDayHour: {
+    height: 150,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 15,
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    backgroundColor: 'hsl(204, 86%, 53%)',
-    borderRadius: 20,
+  },
+  btnsDayHour: {
+    marginVertical: 10,
+    width: 200,
+    height: 40,
+    borderRadius: 50,
+    backgroundColor: Colors.blueBtnsProfile,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -129,12 +156,15 @@ const styles = StyleSheet.create({
   btnAddConf: {
     width: 180,
     height: 40,
-    marginTop: 30,
-    marginBottom: 30,
-    backgroundColor: 'hsl(141, 71%, 48%)',
+    marginVertical: 20,
+    backgroundColor: Colors.greenSuccess,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 25,
+  },
+  txtButtons: {
+    color: Colors.white,
+    fontSize: 20,
   },
 });

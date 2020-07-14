@@ -1,10 +1,18 @@
 import React from 'react';
-import {View, Text, Alert} from 'react-native';
+import {SafeAreaView, Text, StyleSheet} from 'react-native';
 
 export default function Upcoming() {
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <SafeAreaView style={styles.container}>
       <Text style={{fontSize: 25}}>No upcoming events 👀</Text>
-    </View>
+    </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
