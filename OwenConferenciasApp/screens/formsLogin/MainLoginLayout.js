@@ -31,6 +31,12 @@ export default function MainForm({navigation}) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F0F1F6',
+  },
   mainContainer: {
     flex: 1,
     justifyContent: 'center',
