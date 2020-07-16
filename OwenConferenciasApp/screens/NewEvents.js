@@ -5,11 +5,11 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  ScrollView,
   TextInput,
   Alert,
 } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import moment from 'moment';
 import {Colors} from '../themes/Themes';
 
 export default class NewEvent extends React.Component {
@@ -25,17 +25,9 @@ export default class NewEvent extends React.Component {
   handlePickerStart = (datetime) => {
     this.setState({
       isVisible: false,
-      choseDateStart: datetime,
+      choseDateStart: 'Start ' + moment(datetime).format('MMMM, Do YYYY HH:mm'),
     });
-    console.log('Start date:' + datetime);
-  };
-
-  handlePickerEnd = (datetime) => {
-    this.setState({
-      isVisible: false,
-      choseDateEnd: datetime,
-    });
-    console.log('End date: ' + datetime);
+    console.log('Start date:' + moment(datetime).format('MMMM, Do YYYY HH:mm'));
   };
 
   hidePicker = () => {
@@ -62,7 +54,7 @@ export default class NewEvent extends React.Component {
             />
             <TextInput style={styles.inputEvents} placeholder="Topic:" />
             <View style={styles.containerBtnsDayHour}>
-              <Text>Start {this.state.choseDateStart}</Text>
+              <Text>{this.state.choseDateStart}</Text>
               <TouchableOpacity
                 style={styles.btnsDayHour}
                 onPress={this.showPicker}>
@@ -77,16 +69,10 @@ export default class NewEvent extends React.Component {
               />
               <TouchableOpacity
                 style={styles.btnsDayHour}
-                onPress={this.showPicker}>
+              >
                 <Text style={styles.txtButtons}>Select the end</Text>
               </TouchableOpacity>
               {/* This datetime picker is to select the start of the event */}
-              <DateTimePickerModal
-                isVisible={this.state.isVisible}
-                mode="datetime"
-                onConfirm={this.handlePickerEnd}
-                onCancel={this.hidePicker}
-              />
             </View>
             <TouchableOpacity
               style={styles.btnAddConf}
