@@ -3,30 +3,31 @@ import {View, Text, StyleSheet} from 'react-native';
 
 export default function cardEvent(props) {
   return (
-    <View style={styles.cardContainer}>
-      <Text style={[styles.txtInfo, styles.txtDate]}>{props.data.date}</Text>
-      <Text style={[styles.txtInfo, styles.txtEvent]}>{props.data.nameEvent}</Text>
-      <Text style={[styles.txtInfo, styles.txtHour]}>{props.data.hour}</Text>
+    <View style={styles.container}>
+      <View style={styles.cardContainer}>
+        <Text style={[styles.txtInfo, styles.txtDate]}>{props.data.date}</Text>
+        <Text style={[styles.txtInfo, styles.txtEvent]}>{props.data.nameEvent}</Text>
+        <Text style={[styles.txtInfo, styles.txtHour]}>{props.data.hour}</Text>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   cardContainer: {
-    width: '90%',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 380,
     height: 100,
-    marginTop: 15,
-    marginBottom: 10,
-    //padding: 15,
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    backgroundColor: '#ffffff',
+    marginVertical: 10,
+    backgroundColor: '#FFFFFF',
     borderRadius: 10,
-    // flex: 3,
-    // justifyContent: 'center',
-    // borderWidth: 2,
-    // borderStyle: 'solid',
-    // borderColor: 'green',
   },
   txtDate: {
     fontSize: 25,
@@ -35,10 +36,12 @@ const styles = StyleSheet.create({
   },
   txtEvent: {
     fontSize: 20,
+    paddingLeft: 10,
     textAlign: 'center',
   },
   txtHour: {
     fontSize: 15,
+    paddingLeft: 10,
     textAlign: 'right',
     paddingRight: 10,
   },
